@@ -164,7 +164,8 @@ bool Window::PlatformUpdate()
         int yofs = 0;
         int destWidth = (int)(m_width * m_scalex);
         int destHeight = (int)(m_height * m_scaley);
-        if (m_maintainAspectRatio)
+        if (m_fullscreen && m_maintainAspectRatio)
+            // Note that this calc is wrong when not fullscreen on windows, as m_windowHeight includes the title bar etc.
             yofs = (m_windowHeight - destHeight) >> 1;
 
         if (m_maintainAspectRatio && yofs > 0)
